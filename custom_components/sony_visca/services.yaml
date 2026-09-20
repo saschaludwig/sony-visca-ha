@@ -1,8 +1,11 @@
 ptz:
-  target:
-    device:
-      integration: sony_visca
   fields:
+    device_id:
+      selector:
+        device:
+          filter:
+            integration: sony_visca
+          multiple: true
     direction:
       required: true
       example: left
@@ -32,10 +35,13 @@ ptz:
           step: 1
 
 zoom:
-  target:
-    device:
-      integration: sony_visca
   fields:
+    device_id:
+      selector:
+        device:
+          filter:
+            integration: sony_visca
+          multiple: true
     action:
       required: true
       example: in
@@ -53,10 +59,13 @@ zoom:
           step: 1
 
 recall_preset:
-  target:
-    device:
-      integration: sony_visca
   fields:
+    device_id:
+      selector:
+        device:
+          filter:
+            integration: sony_visca
+          multiple: true
     preset:
       required: true
       example: 1
@@ -67,10 +76,13 @@ recall_preset:
           step: 1
 
 save_preset:
-  target:
-    device:
-      integration: sony_visca
   fields:
+    device_id:
+      selector:
+        device:
+          filter:
+            integration: sony_visca
+          multiple: true
     preset:
       required: true
       example: 1
@@ -81,10 +93,13 @@ save_preset:
           step: 1
 
 focus:
-  target:
-    device:
-      integration: sony_visca
   fields:
+    device_id:
+      selector:
+        device:
+          filter:
+            integration: sony_visca
+          multiple: true
     action:
       required: true
       example: near
@@ -102,10 +117,13 @@ focus:
           step: 1
 
 ptz_absolute:
-  target:
-    device:
-      integration: sony_visca
   fields:
+    device_id:
+      selector:
+        device:
+          filter:
+            integration: sony_visca
+          multiple: true
     pan:
       required: true
       example: 0
@@ -135,10 +153,13 @@ ptz_absolute:
             - degrees
 
 ptz_relative:
-  target:
-    device:
-      integration: sony_visca
   fields:
+    device_id:
+      selector:
+        device:
+          filter:
+            integration: sony_visca
+          multiple: true
     pan:
       required: true
       example: 0
@@ -168,10 +189,13 @@ ptz_relative:
             - degrees
 
 send_command:
-  target:
-    device:
-      integration: sony_visca
   fields:
+    device_id:
+      selector:
+        device:
+          filter:
+            integration: sony_visca
+          multiple: true
     command:
       required: true
       example: "01 04 00 02"

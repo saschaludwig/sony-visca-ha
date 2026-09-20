@@ -146,6 +146,7 @@
       "name": "Schwenken/Neigen",
       "description": "Startet eine kontinuierliche Schwenk-/Neigebewegung oder stoppt sie.",
       "fields": {
+        "device_id": { "name": "Gerät", "description": "Sony-VISCA-Kamera. Optional, wenn nur eine Kamera eingerichtet ist." },
         "direction": { "name": "Richtung", "description": "Bewegungsrichtung oder Stopp" },
         "pan_speed": { "name": "Schwenkgeschwindigkeit", "description": "Überschreibt die Schwenkgeschwindigkeit (1-24). Standard ist die Number-Entity." },
         "tilt_speed": { "name": "Neigegeschwindigkeit", "description": "Überschreibt die Neigegeschwindigkeit (1-24). Standard ist die Number-Entity." }
@@ -155,6 +156,7 @@
       "name": "Zoom",
       "description": "Startet oder stoppt eine Zoombewegung.",
       "fields": {
+        "device_id": { "name": "Gerät", "description": "Sony-VISCA-Kamera. Optional, wenn nur eine Kamera eingerichtet ist." },
         "action": { "name": "Aktion", "description": "Hereinzoomen, herauszoomen oder stoppen" },
         "speed": { "name": "Geschwindigkeit", "description": "Variable Zoomgeschwindigkeit 0-7. Standard ist die Number-Entity." }
       }
@@ -163,6 +165,7 @@
       "name": "Fokus",
       "description": "Startet oder stoppt eine Fokusbewegung.",
       "fields": {
+        "device_id": { "name": "Gerät", "description": "Sony-VISCA-Kamera. Optional, wenn nur eine Kamera eingerichtet ist." },
         "action": { "name": "Aktion", "description": "Fokus nah, fern oder stoppen" },
         "speed": { "name": "Geschwindigkeit", "description": "Variable Fokusgeschwindigkeit 0-7. Standard ist die Number-Entity." }
       }
@@ -171,6 +174,7 @@
       "name": "Preset abrufen",
       "description": "Ruft ein Kamerapreset ab (1-64).",
       "fields": {
+        "device_id": { "name": "Gerät", "description": "Sony-VISCA-Kamera. Optional, wenn nur eine Kamera eingerichtet ist." },
         "preset": { "name": "Preset", "description": "Preset-Nummer von 1 bis 64" }
       }
     },
@@ -178,6 +182,7 @@
       "name": "Preset speichern",
       "description": "Speichert die aktuelle Position als Kamerapreset (1-64).",
       "fields": {
+        "device_id": { "name": "Gerät", "description": "Sony-VISCA-Kamera. Optional, wenn nur eine Kamera eingerichtet ist." },
         "preset": { "name": "Preset", "description": "Preset-Nummer von 1 bis 64" }
       }
     },
@@ -185,6 +190,7 @@
       "name": "Schwenken/Neigen absolut",
       "description": "Fährt eine absolute Schwenk-/Neigeposition an.",
       "fields": {
+        "device_id": { "name": "Gerät", "description": "Sony-VISCA-Kamera. Optional, wenn nur eine Kamera eingerichtet ist." },
         "pan": { "name": "Schwenken", "description": "Schwenkposition in Rohwerten oder Grad" },
         "tilt": { "name": "Neigen", "description": "Neigeposition in Rohwerten oder Grad" },
         "speed": { "name": "Geschwindigkeit", "description": "Fahrgeschwindigkeit 1-24" },
@@ -195,6 +201,7 @@
       "name": "Schwenken/Neigen relativ",
       "description": "Bewegt die Kamera relativ zur aktuellen Position.",
       "fields": {
+        "device_id": { "name": "Gerät", "description": "Sony-VISCA-Kamera. Optional, wenn nur eine Kamera eingerichtet ist." },
         "pan": { "name": "Schwenken", "description": "Schwenkversatz in Rohwerten oder Grad" },
         "tilt": { "name": "Neigen", "description": "Neigeversatz in Rohwerten oder Grad" },
         "speed": { "name": "Geschwindigkeit", "description": "Fahrgeschwindigkeit 1-24" },
@@ -205,6 +212,7 @@
       "name": "VISCA-Befehl senden",
       "description": "Sendet eine rohe hexadezimale VISCA-Nutzlast. Kameraadresse und Terminator werden ergänzt, falls sie fehlen.",
       "fields": {
+        "device_id": { "name": "Gerät", "description": "Sony-VISCA-Kamera. Optional, wenn nur eine Kamera eingerichtet ist." },
         "command": { "name": "Befehl", "description": "Hex-Bytes, zum Beispiel 01 04 00 02" }
       }
     }

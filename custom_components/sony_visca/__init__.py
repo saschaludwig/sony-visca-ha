@@ -270,7 +270,11 @@ def _async_register_services(hass: HomeAssistant) -> None:
 def _runtimes_from_call(hass: HomeAssistant, call: ServiceCall) -> list[SonyViscaRuntimeData]:
     """Resolve targeted Sony VISCA devices from a service call."""
     device_ids = call.data.get("device_id") or []
+    if isinstance(device_ids, str):
+        device_ids = [device_ids]
     entity_ids = call.data.get("entity_id") or []
+    if isinstance(entity_ids, str):
+        entity_ids = [entity_ids]
     entry_ids: set[str] = set()
 
     device_reg = dr.async_get(hass)
