@@ -1,0 +1,179 @@
+ptz:
+  target:
+    device:
+      integration: sony_visca
+  fields:
+    direction:
+      required: true
+      example: left
+      selector:
+        select:
+          options:
+            - left
+            - right
+            - up
+            - down
+            - up_left
+            - up_right
+            - down_left
+            - down_right
+            - stop
+    pan_speed:
+      selector:
+        number:
+          min: 1
+          max: 24
+          step: 1
+    tilt_speed:
+      selector:
+        number:
+          min: 1
+          max: 24
+          step: 1
+
+zoom:
+  target:
+    device:
+      integration: sony_visca
+  fields:
+    action:
+      required: true
+      example: in
+      selector:
+        select:
+          options:
+            - in
+            - out
+            - stop
+    speed:
+      selector:
+        number:
+          min: 0
+          max: 7
+          step: 1
+
+recall_preset:
+  target:
+    device:
+      integration: sony_visca
+  fields:
+    preset:
+      required: true
+      example: 1
+      selector:
+        number:
+          min: 1
+          max: 64
+          step: 1
+
+save_preset:
+  target:
+    device:
+      integration: sony_visca
+  fields:
+    preset:
+      required: true
+      example: 1
+      selector:
+        number:
+          min: 1
+          max: 64
+          step: 1
+
+focus:
+  target:
+    device:
+      integration: sony_visca
+  fields:
+    action:
+      required: true
+      example: near
+      selector:
+        select:
+          options:
+            - near
+            - far
+            - stop
+    speed:
+      selector:
+        number:
+          min: 0
+          max: 7
+          step: 1
+
+ptz_absolute:
+  target:
+    device:
+      integration: sony_visca
+  fields:
+    pan:
+      required: true
+      example: 0
+      selector:
+        number:
+          step: 0.1
+          mode: box
+    tilt:
+      required: true
+      example: 0
+      selector:
+        number:
+          step: 0.1
+          mode: box
+    speed:
+      selector:
+        number:
+          min: 1
+          max: 24
+          step: 1
+    units:
+      example: raw
+      selector:
+        select:
+          options:
+            - raw
+            - degrees
+
+ptz_relative:
+  target:
+    device:
+      integration: sony_visca
+  fields:
+    pan:
+      required: true
+      example: 0
+      selector:
+        number:
+          step: 0.1
+          mode: box
+    tilt:
+      required: true
+      example: 0
+      selector:
+        number:
+          step: 0.1
+          mode: box
+    speed:
+      selector:
+        number:
+          min: 1
+          max: 24
+          step: 1
+    units:
+      example: degrees
+      selector:
+        select:
+          options:
+            - raw
+            - degrees
+
+send_command:
+  target:
+    device:
+      integration: sony_visca
+  fields:
+    command:
+      required: true
+      example: "01 04 00 02"
+      selector:
+        text:

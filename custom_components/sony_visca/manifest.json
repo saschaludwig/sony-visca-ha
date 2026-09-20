@@ -1,0 +1,12 @@
+{
+  "domain": "sony_visca",
+  "name": "Sony VISCA",
+  "codeowners": ["@saschaludwig"],
+  "config_flow": true,
+  "documentation": "https://github.com/saschaludwig/sony-visca-ha",
+  "integration_type": "device",
+  "iot_class": "local_polling",
+  "issue_tracker": "https://github.com/saschaludwig/sony-visca-ha/issues",
+  "requirements": [],
+  "version": "0.4.1"
+}

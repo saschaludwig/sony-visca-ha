@@ -1,0 +1,212 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Sony VISCA",
+        "description": "Konfiguriere eine Sony-PTZ-Kamera über VISCA over IP. VISCA over IP muss an der Kamera aktiviert sein (oft über OSD oder DIP-Schalter).",
+        "data": {
+          "host": "Host",
+          "port": "Port",
+          "camera_id": "Kamera-ID"
+        },
+        "data_description": {
+          "host": "IP-Adresse oder Hostname der Kamera",
+          "port": "VISCA-over-IP-UDP-Port (Standard 52381)",
+          "camera_id": "VISCA-Kameraadresse 1-7 (meist 1)"
+        }
+      },
+      "model": {
+        "title": "Kameramodell",
+        "description": "Wähle das genaue Modell. Dieser Schritt erscheint nur, wenn VISCA eine Modellfamilie mit mehreren Kameras meldet oder die Kamera nicht automatisch erkannt wird.",
+        "data": {
+          "model": "Kameramodell"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Verbindung zur Kamera fehlgeschlagen. Prüfe Host, Port und ob VISCA over IP aktiviert ist.",
+      "unknown": "Unerwarteter Fehler"
+    },
+    "abort": {
+      "already_configured": "Diese Kamera ist bereits konfiguriert"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Sony-VISCA-Optionen",
+        "description": "Die Bildrate bestimmt die Verschlusszeit-Beschriftungen der Kamera.",
+        "data": {
+          "frame_rate": "Bildrate"
+        }
+      }
+    }
+  },
+  "entity": {
+    "switch": {
+      "power": { "name": "Strom" },
+      "exposure_comp": { "name": "Belichtungskorrektur" },
+      "backlight_comp": { "name": "Gegenlichtkompensation" },
+      "spotlight_comp": { "name": "Scheinwerferkompensation" },
+      "slow_shutter": { "name": "Automatischer Langzeitverschluss" },
+      "tele_convert": { "name": "Telekonverter" },
+      "visibility_enhancer": { "name": "Sichtbarkeitsverbesserung" },
+      "high_sensitivity": { "name": "Hohe Empfindlichkeit" },
+      "defog": { "name": "Entnebelung" },
+      "wide_dynamic": { "name": "Weiter Dynamikumfang" },
+      "knee": { "name": "Knee" },
+      "pt_slow": { "name": "Langsames Schwenken/Neigen" },
+      "tally_red": { "name": "Tally" },
+      "auto_framing": { "name": "Automatischer Bildausschnitt" },
+      "icr": { "name": "ICR / Nachtmodus" },
+      "auto_icr": { "name": "Auto-ICR" },
+      "image_flip": { "name": "Bildspiegelung" },
+      "image_stabilizer": { "name": "Bildstabilisator" },
+      "flicker_cancel": { "name": "Flackerunterdrückung" },
+      "high_resolution": { "name": "Hohe Auflösung" },
+      "ir_receive": { "name": "IR-Empfang" },
+      "color_bar": { "name": "Farbbalken" },
+      "pan_reverse": { "name": "Schwenken umkehren" },
+      "tilt_reverse": { "name": "Neigen umkehren" },
+      "standby_mode": { "name": "Standby-Modus" },
+      "osd": { "name": "Bildschirmanzeige" }
+    },
+    "button": {
+      "home": { "name": "Home" },
+      "ptz_stop": { "name": "Schwenken/Neigen stoppen" },
+      "zoom_stop": { "name": "Zoom stoppen" },
+      "preset_recall": { "name": "Preset abrufen" },
+      "preset_save": { "name": "Preset speichern" },
+      "focus_near": { "name": "Fokus nah" },
+      "focus_far": { "name": "Fokus fern" },
+      "focus_stop": { "name": "Fokus stoppen" },
+      "focus_one_push": { "name": "One-Push-AF" },
+      "focus_infinity": { "name": "Fokus unendlich" },
+      "wb_one_push": { "name": "One-Push-Weißabgleich" },
+      "pt_reset": { "name": "Schwenken/Neigen zurücksetzen" }
+    },
+    "number": {
+      "pan_speed": { "name": "Schwenkgeschwindigkeit" },
+      "tilt_speed": { "name": "Neigegeschwindigkeit" },
+      "zoom_speed": { "name": "Zoomgeschwindigkeit" },
+      "focus_speed": { "name": "Fokusgeschwindigkeit" },
+      "preset_selector": { "name": "Preset-Auswahl" },
+      "preset_speed": { "name": "Preset-Anfahrgeschwindigkeit" },
+      "zoom_direct": { "name": "Zoomposition" },
+      "focus_direct": { "name": "Fokusposition" },
+      "focus_near_limit": { "name": "Fokus-Nahgrenze" },
+      "af_op_time": { "name": "AF-Betriebszeit" },
+      "af_stay_time": { "name": "AF-Haltezeit" },
+      "exposure_comp_level": { "name": "Belichtungskorrekturwert" },
+      "red_gain": { "name": "Rotverstärkung" },
+      "blue_gain": { "name": "Blauverstärkung" },
+      "wb_offset": { "name": "Weißabgleich-Offset" },
+      "wb_speed": { "name": "Weißabgleich-Geschwindigkeit" },
+      "nr_level": { "name": "Rauschunterdrückung" },
+      "detail_level": { "name": "Detailstufe" },
+      "color_gain": { "name": "Farbverstärkung" },
+      "color_hue": { "name": "Farbton" },
+      "chroma_suppress": { "name": "Chroma-Unterdrückung" },
+      "ae_speed": { "name": "AE-Geschwindigkeit" },
+      "black_level": { "name": "Schwarzpegel" },
+      "ramp_curve": { "name": "Rampenkurve" },
+      "preset_common_speed": { "name": "Gemeinsame Preset-Geschwindigkeit" }
+    },
+    "select": {
+      "focus_mode": { "name": "Fokusmodus" },
+      "zoom_mode": { "name": "Zoommodus" },
+      "af_mode": { "name": "AF-Modus" },
+      "af_sensitivity": { "name": "AF-Empfindlichkeit" },
+      "exposure_mode": { "name": "Belichtungsmodus" },
+      "iris": { "name": "Blende" },
+      "gain": { "name": "Verstärkung" },
+      "shutter": { "name": "Verschluss" },
+      "brightness": { "name": "Helligkeit" },
+      "wb_mode": { "name": "Weißabgleichmodus" },
+      "wdr": { "name": "Weiter Dynamikumfang" },
+      "picture_effect": { "name": "Bildeffekt" },
+      "zoom_speed_type": { "name": "Zoomgeschwindigkeitstyp" },
+      "preset_speed_mode": { "name": "Preset-Geschwindigkeitsmodus" },
+      "preset_mode": { "name": "Preset-Modus" },
+      "tally_level": { "name": "Tally-Stufe" },
+      "gain_limit": { "name": "Verstärkungsgrenze" }
+    },
+    "sensor": {
+      "power": { "name": "Strom" },
+      "pan_position": { "name": "Schwenkposition" },
+      "tilt_position": { "name": "Neigeposition" },
+      "zoom_position": { "name": "Zoomposition" },
+      "focus_position": { "name": "Fokusposition" },
+      "pan_degrees": { "name": "Schwenkwinkel" },
+      "tilt_degrees": { "name": "Neigewinkel" }
+    }
+  },
+  "services": {
+    "ptz": {
+      "name": "Schwenken/Neigen",
+      "description": "Startet eine kontinuierliche Schwenk-/Neigebewegung oder stoppt sie.",
+      "fields": {
+        "direction": { "name": "Richtung", "description": "Bewegungsrichtung oder Stopp" },
+        "pan_speed": { "name": "Schwenkgeschwindigkeit", "description": "Überschreibt die Schwenkgeschwindigkeit (1-24). Standard ist die Number-Entity." },
+        "tilt_speed": { "name": "Neigegeschwindigkeit", "description": "Überschreibt die Neigegeschwindigkeit (1-24). Standard ist die Number-Entity." }
+      }
+    },
+    "zoom": {
+      "name": "Zoom",
+      "description": "Startet oder stoppt eine Zoombewegung.",
+      "fields": {
+        "action": { "name": "Aktion", "description": "Hereinzoomen, herauszoomen oder stoppen" },
+        "speed": { "name": "Geschwindigkeit", "description": "Variable Zoomgeschwindigkeit 0-7. Standard ist die Number-Entity." }
+      }
+    },
+    "focus": {
+      "name": "Fokus",
+      "description": "Startet oder stoppt eine Fokusbewegung.",
+      "fields": {
+        "action": { "name": "Aktion", "description": "Fokus nah, fern oder stoppen" },
+        "speed": { "name": "Geschwindigkeit", "description": "Variable Fokusgeschwindigkeit 0-7. Standard ist die Number-Entity." }
+      }
+    },
+    "recall_preset": {
+      "name": "Preset abrufen",
+      "description": "Ruft ein Kamerapreset ab (1-64).",
+      "fields": {
+        "preset": { "name": "Preset", "description": "Preset-Nummer von 1 bis 64" }
+      }
+    },
+    "save_preset": {
+      "name": "Preset speichern",
+      "description": "Speichert die aktuelle Position als Kamerapreset (1-64).",
+      "fields": {
+        "preset": { "name": "Preset", "description": "Preset-Nummer von 1 bis 64" }
+      }
+    },
+    "ptz_absolute": {
+      "name": "Schwenken/Neigen absolut",
+      "description": "Fährt eine absolute Schwenk-/Neigeposition an.",
+      "fields": {
+        "pan": { "name": "Schwenken", "description": "Schwenkposition in Rohwerten oder Grad" },
+        "tilt": { "name": "Neigen", "description": "Neigeposition in Rohwerten oder Grad" },
+        "speed": { "name": "Geschwindigkeit", "description": "Fahrgeschwindigkeit 1-24" },
+        "units": { "name": "Einheit", "description": "raw oder degrees" }
+      }
+    },
+    "ptz_relative": {
+      "name": "Schwenken/Neigen relativ",
+      "description": "Bewegt die Kamera relativ zur aktuellen Position.",
+      "fields": {
+        "pan": { "name": "Schwenken", "description": "Schwenkversatz in Rohwerten oder Grad" },
+        "tilt": { "name": "Neigen", "description": "Neigeversatz in Rohwerten oder Grad" },
+        "speed": { "name": "Geschwindigkeit", "description": "Fahrgeschwindigkeit 1-24" },
+        "units": { "name": "Einheit", "description": "raw oder degrees" }
+      }
+    },
+    "send_command": {
+      "name": "VISCA-Befehl senden",
+      "description": "Sendet eine rohe hexadezimale VISCA-Nutzlast. Kameraadresse und Terminator werden ergänzt, falls sie fehlen.",
+      "fields": {
+        "command": { "name": "Befehl", "description": "Hex-Bytes, zum Beispiel 01 04 00 02" }
+      }
+    }
+  }
+}

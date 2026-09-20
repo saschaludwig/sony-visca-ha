@@ -1,0 +1,212 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Sony VISCA",
+        "description": "Configure a Sony PTZ camera using VISCA over IP. VISCA over IP must be enabled on the camera (often via OSD or dip switch).",
+        "data": {
+          "host": "Host",
+          "port": "Port",
+          "camera_id": "Camera ID"
+        },
+        "data_description": {
+          "host": "IP address or hostname of the camera",
+          "port": "VISCA over IP UDP port (default 52381)",
+          "camera_id": "VISCA camera address 1-7 (usually 1)"
+        }
+      },
+      "model": {
+        "title": "Camera model",
+        "description": "Choose the exact camera. This step is only shown when VISCA reports a shared model family or the camera cannot be identified automatically.",
+        "data": {
+          "model": "Camera model"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Could not connect to the camera. Check host, port, and that VISCA over IP is enabled.",
+      "unknown": "Unexpected error"
+    },
+    "abort": {
+      "already_configured": "This camera is already configured"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Sony VISCA options",
+        "description": "Frame rate selects the shutter-speed labels used by the camera.",
+        "data": {
+          "frame_rate": "Frame rate"
+        }
+      }
+    }
+  },
+  "entity": {
+    "switch": {
+      "power": { "name": "Power" },
+      "exposure_comp": { "name": "Exposure compensation" },
+      "backlight_comp": { "name": "Backlight compensation" },
+      "spotlight_comp": { "name": "Spotlight compensation" },
+      "slow_shutter": { "name": "Auto slow shutter" },
+      "tele_convert": { "name": "Tele convert" },
+      "visibility_enhancer": { "name": "Visibility enhancer" },
+      "high_sensitivity": { "name": "High sensitivity" },
+      "defog": { "name": "Defog" },
+      "wide_dynamic": { "name": "Wide dynamic range" },
+      "knee": { "name": "Knee" },
+      "pt_slow": { "name": "Pan/tilt slow mode" },
+      "tally_red": { "name": "Tally" },
+      "auto_framing": { "name": "Auto framing" },
+      "icr": { "name": "ICR / night mode" },
+      "auto_icr": { "name": "Auto ICR" },
+      "image_flip": { "name": "Image flip" },
+      "image_stabilizer": { "name": "Image stabilizer" },
+      "flicker_cancel": { "name": "Flicker cancel" },
+      "high_resolution": { "name": "High resolution" },
+      "ir_receive": { "name": "IR receive" },
+      "color_bar": { "name": "Color bar" },
+      "pan_reverse": { "name": "Pan reverse" },
+      "tilt_reverse": { "name": "Tilt reverse" },
+      "standby_mode": { "name": "Standby mode" },
+      "osd": { "name": "On-screen display" }
+    },
+    "button": {
+      "home": { "name": "Home" },
+      "ptz_stop": { "name": "Pan/tilt stop" },
+      "zoom_stop": { "name": "Zoom stop" },
+      "preset_recall": { "name": "Recall preset" },
+      "preset_save": { "name": "Save preset" },
+      "focus_near": { "name": "Focus near" },
+      "focus_far": { "name": "Focus far" },
+      "focus_stop": { "name": "Focus stop" },
+      "focus_one_push": { "name": "One-push AF" },
+      "focus_infinity": { "name": "Focus infinity" },
+      "wb_one_push": { "name": "One-push white balance" },
+      "pt_reset": { "name": "Pan/tilt reset" }
+    },
+    "number": {
+      "pan_speed": { "name": "Pan speed" },
+      "tilt_speed": { "name": "Tilt speed" },
+      "zoom_speed": { "name": "Zoom speed" },
+      "focus_speed": { "name": "Focus speed" },
+      "preset_selector": { "name": "Preset selector" },
+      "preset_speed": { "name": "Preset drive speed" },
+      "zoom_direct": { "name": "Zoom position" },
+      "focus_direct": { "name": "Focus position" },
+      "focus_near_limit": { "name": "Focus near limit" },
+      "af_op_time": { "name": "AF operating time" },
+      "af_stay_time": { "name": "AF stay time" },
+      "exposure_comp_level": { "name": "Exposure compensation level" },
+      "red_gain": { "name": "Red gain" },
+      "blue_gain": { "name": "Blue gain" },
+      "wb_offset": { "name": "White balance offset" },
+      "wb_speed": { "name": "White balance speed" },
+      "nr_level": { "name": "Noise reduction" },
+      "detail_level": { "name": "Detail level" },
+      "color_gain": { "name": "Color gain" },
+      "color_hue": { "name": "Color hue" },
+      "chroma_suppress": { "name": "Chroma suppress" },
+      "ae_speed": { "name": "AE speed" },
+      "black_level": { "name": "Black level" },
+      "ramp_curve": { "name": "Ramp curve" },
+      "preset_common_speed": { "name": "Common preset speed" }
+    },
+    "select": {
+      "focus_mode": { "name": "Focus mode" },
+      "zoom_mode": { "name": "Zoom mode" },
+      "af_mode": { "name": "AF mode" },
+      "af_sensitivity": { "name": "AF sensitivity" },
+      "exposure_mode": { "name": "Exposure mode" },
+      "iris": { "name": "Iris" },
+      "gain": { "name": "Gain" },
+      "shutter": { "name": "Shutter" },
+      "brightness": { "name": "Brightness" },
+      "wb_mode": { "name": "White balance mode" },
+      "wdr": { "name": "Wide dynamic range" },
+      "picture_effect": { "name": "Picture effect" },
+      "zoom_speed_type": { "name": "Zoom speed type" },
+      "preset_speed_mode": { "name": "Preset speed mode" },
+      "preset_mode": { "name": "Preset mode" },
+      "tally_level": { "name": "Tally level" },
+      "gain_limit": { "name": "Gain limit" }
+    },
+    "sensor": {
+      "power": { "name": "Power" },
+      "pan_position": { "name": "Pan position" },
+      "tilt_position": { "name": "Tilt position" },
+      "zoom_position": { "name": "Zoom position" },
+      "focus_position": { "name": "Focus position" },
+      "pan_degrees": { "name": "Pan degrees" },
+      "tilt_degrees": { "name": "Tilt degrees" }
+    }
+  },
+  "services": {
+    "ptz": {
+      "name": "Pan/Tilt",
+      "description": "Start a continuous pan/tilt move or stop movement.",
+      "fields": {
+        "direction": { "name": "Direction", "description": "Move direction or stop" },
+        "pan_speed": { "name": "Pan speed", "description": "Override pan speed (1-24). Defaults to the device number entity." },
+        "tilt_speed": { "name": "Tilt speed", "description": "Override tilt speed (1-24). Defaults to the device number entity." }
+      }
+    },
+    "zoom": {
+      "name": "Zoom",
+      "description": "Start or stop a zoom move.",
+      "fields": {
+        "action": { "name": "Action", "description": "Zoom in, out, or stop" },
+        "speed": { "name": "Speed", "description": "Variable zoom speed 0-7. Defaults to the zoom speed number entity." }
+      }
+    },
+    "focus": {
+      "name": "Focus",
+      "description": "Start or stop a focus move.",
+      "fields": {
+        "action": { "name": "Action", "description": "Focus near, far, or stop" },
+        "speed": { "name": "Speed", "description": "Variable focus speed 0-7. Defaults to the focus speed number entity." }
+      }
+    },
+    "recall_preset": {
+      "name": "Recall preset",
+      "description": "Recall a camera preset (1-64).",
+      "fields": {
+        "preset": { "name": "Preset", "description": "Preset number from 1 to 64" }
+      }
+    },
+    "save_preset": {
+      "name": "Save preset",
+      "description": "Store the current position as a camera preset (1-64).",
+      "fields": {
+        "preset": { "name": "Preset", "description": "Preset number from 1 to 64" }
+      }
+    },
+    "ptz_absolute": {
+      "name": "Pan/Tilt absolute",
+      "description": "Move to an absolute pan/tilt position.",
+      "fields": {
+        "pan": { "name": "Pan", "description": "Pan position in raw VISCA units or degrees" },
+        "tilt": { "name": "Tilt", "description": "Tilt position in raw VISCA units or degrees" },
+        "speed": { "name": "Speed", "description": "Move speed 1-24" },
+        "units": { "name": "Units", "description": "raw or degrees" }
+      }
+    },
+    "ptz_relative": {
+      "name": "Pan/Tilt relative",
+      "description": "Move relative to the current pan/tilt position.",
+      "fields": {
+        "pan": { "name": "Pan", "description": "Pan offset in raw VISCA units or degrees" },
+        "tilt": { "name": "Tilt", "description": "Tilt offset in raw VISCA units or degrees" },
+        "speed": { "name": "Speed", "description": "Move speed 1-24" },
+        "units": { "name": "Units", "description": "raw or degrees" }
+      }
+    },
+    "send_command": {
+      "name": "Send VISCA command",
+      "description": "Send a raw hexadecimal VISCA payload. The camera address and terminator are added when missing.",
+      "fields": {
+        "command": { "name": "Command", "description": "Hex bytes, for example 01 04 00 02" }
+      }
+    }
+  }
+}
