@@ -69,6 +69,13 @@ class SonyViscaSensor(SonyViscaEntity, SensorEntity):
         self.entity_description = description
 
     @property
+    def available(self) -> bool:
+        """Keep the power diagnostic visible while the camera is in standby."""
+        if self.entity_description.key == "power":
+            return self.runtime.client.connected
+        return super().available
+
+    @property
     def native_value(self) -> bool | int | float | str | None:
         """Return the latest inquired value."""
         if not self.coordinator.data:

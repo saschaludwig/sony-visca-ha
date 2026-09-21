@@ -66,10 +66,44 @@ class SonyViscaCoordinator(DataUpdateCoordinator[dict[str, Any]]):
         ]
         self._low_index = 0
 
+    def _last_power(self) -> bool | None:
+        if not self.data:
+            return None
+        value = self.data.get("power")
+        if value is None:
+            return None
+        return bool(value)
+
     async def _async_update_data(self) -> dict[str, Any]:
+        last_power = self._last_power()
+        if last_power is False:
+            return await self._standby_or_wake()
+        return await self._full_poll(last_power)
+
+    async def _standby_or_wake(self) -> dict[str, Any]:
+        """Poll only CAM_PowerInq while the camera is in standby."""
+        try:
+            if await self.client.inquire_power():
+                return await self._full_poll(False)
+        except ViscaError as err:
+            _LOGGER.debug("Standby power inquiry failed: %s", err)
+        return {"power": False}
+
+    async def _full_poll(self, last_power: bool | None) -> dict[str, Any]:
+        power_this_cycle = False
+        try:
+            if not await self.client.inquire_power():
+                return {"power": False}
+            power_this_cycle = True
+        except ViscaError as err:
+            _LOGGER.debug("CAM_PowerInq failed before block poll: %s", err)
+
         data: dict[str, Any] = dict(self.data) if self.data else {}
+        if power_this_cycle:
+            data["power"] = True
         errors: list[str] = []
-        successes = 0
+        successes = 1 if power_this_cycle else 0
+        abort_after_fail = power_this_cycle or last_power is True
 
         for block in self.blocks:
             try:
@@ -78,18 +112,22 @@ class SonyViscaCoordinator(DataUpdateCoordinator[dict[str, Any]]):
                 if parsed:
                     data.update(parsed)
                     successes += 1
+                    if "power" in parsed:
+                        power_this_cycle = True
             except ViscaError as err:
                 errors.append(f"{block.key}: {err}")
+                if abort_after_fail:
+                    break
+        else:
+            try:
+                pan, tilt = await self.client.inquire_pan_tilt()
+                data["pan_position"] = pan
+                data["tilt_position"] = tilt
+                successes += 1
+            except ViscaError as err:
+                errors.append(f"pan_tilt: {err}")
 
-        try:
-            pan, tilt = await self.client.inquire_pan_tilt()
-            data["pan_position"] = pan
-            data["tilt_position"] = tilt
-            successes += 1
-        except ViscaError as err:
-            errors.append(f"pan_tilt: {err}")
-
-        if self._low_priority:
+        if self._low_priority and not (abort_after_fail and errors):
             inquiry = self._low_priority[self._low_index % len(self._low_priority)]
             self._low_index += 1
             try:
@@ -99,7 +137,7 @@ class SonyViscaCoordinator(DataUpdateCoordinator[dict[str, Any]]):
             except ViscaError as err:
                 errors.append(f"{inquiry.key}: {err}")
 
-        if "power" not in data:
+        if not power_this_cycle:
             try:
                 data["power"] = await self.client.inquire_power()
                 successes += 1
@@ -107,7 +145,11 @@ class SonyViscaCoordinator(DataUpdateCoordinator[dict[str, Any]]):
                 errors.append(f"power: {err}")
 
         if successes == 0:
+            if last_power is False:
+                return {"power": False}
             raise UpdateFailed("; ".join(errors) or "All VISCA inquiries failed")
         if errors:
             _LOGGER.debug("Some VISCA inquiries failed: %s", "; ".join(errors))
+        if data.get("power") is False:
+            return {"power": False}
         return data

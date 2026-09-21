@@ -972,7 +972,10 @@ class ViscaClient:
             wait=queued.wait,
             is_command=queued.packet_type == TYPE_COMMAND,
         )
-        pending.timer = self._loop.call_later(TIMEOUT_MS / 1000, self._handle_timeout, self._sequence)
+        # Occupying commands (power, preset) may get Completion as the first
+        # forwarded reply. The 2s ACK timeout is too short for power-on (~7s).
+        first_timeout_ms = COMMAND_COMPLETION_TIMEOUT_MS if queued.wait == "completion" else TIMEOUT_MS
+        pending.timer = self._loop.call_later(first_timeout_ms / 1000, self._handle_timeout, self._sequence)
         self._active[self._sequence] = pending
         self._pending_seq = self._sequence
         LOGGER.debug("VISCA send seq=%s %s", self._sequence, packet.hex(" "))

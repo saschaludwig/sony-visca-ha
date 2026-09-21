@@ -68,6 +68,13 @@ class SonyViscaEntity(CoordinatorEntity[SonyViscaCoordinator]):
         self._attr_unique_id = f"{runtime.unique_id}_{key}"
         self._attr_device_info = runtime.device_info
 
+    @property
+    def available(self) -> bool:
+        """Hide camera-state entities while the camera is in standby."""
+        if self.coordinator.data is not None and self.coordinator.data.get("power") is False:
+            return False
+        return super().available
+
     def _data(self, key: str, default: Any = None) -> Any:
         if not self.coordinator.data:
             return default

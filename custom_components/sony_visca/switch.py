@@ -259,6 +259,13 @@ class SonyViscaSwitch(SonyViscaEntity, SwitchEntity):
         self.entity_description = description
 
     @property
+    def available(self) -> bool:
+        """Keep the power switch operable in standby and after poll failures."""
+        if self.entity_description.key == "power":
+            return self.runtime.client.connected
+        return super().available
+
+    @property
     def is_on(self) -> bool | None:
         """Return the latest inquired or assumed state."""
         value = self._data(self.entity_description.data_key or self.entity_description.key)
@@ -276,6 +283,8 @@ class SonyViscaSwitch(SonyViscaEntity, SwitchEntity):
 
     async def _async_set(self, on: bool) -> None:
         description = self.entity_description
+        if description.setter == "set_power":
+            self.coordinator.async_set_updated_data({"power": on} if on else {"power": False})
         try:
             if description.tally:
                 await self._async_set_tally(on)
@@ -284,9 +293,15 @@ class SonyViscaSwitch(SonyViscaEntity, SwitchEntity):
             else:
                 await getattr(self.runtime.client, description.setter)(on)
         except ViscaError as err:
+            if description.setter == "set_power":
+                self.coordinator.async_set_updated_data({"power": not on})
             raise HomeAssistantError(str(err)) from err
-        if self.coordinator.data is not None:
-            self.coordinator.data[description.data_key or description.key] = on
+        key = description.data_key or description.key
+        if description.setter == "set_power" and not on:
+            return
+        current = dict(self.coordinator.data) if self.coordinator.data else {}
+        current[key] = on
+        self.coordinator.async_set_updated_data(current)
         await self.coordinator.async_request_refresh()
 
     async def _async_set_tally(self, on: bool) -> None:
